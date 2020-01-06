@@ -27,12 +27,13 @@ public class App extends BasePage{
         driver.manage().window().maximize();
         findElement(By.linkText("企业登录")).click();
 
-        driver.manage().addCookie(new Cookie("wwrtx.sid", "BrrtaUJaOA-VbycDsOu1bbPY-OFZf0lxJMuMm6m3Ki-B5xWUEyntT-xxLicrVFVY"));
+        driver.manage().addCookie(new Cookie("wwrtx.sid", "BrrtaUJaOA-VbycDsOu1bWMXIsmyL4gNufiLzlpRxABjb29g_EYcf5moCXDmv7Zz"));
         driver.navigate().refresh();
         return this;
     }
 
-    public ContactPage toContact() {
+    public ContactPage toContact() throws InterruptedException {
+        Thread.sleep(1000);
         waitClickable(By.id("menu_contacts"), 20);
         findElement(By.id("menu_contacts")).click();
         return new ContactPage();
@@ -48,5 +49,11 @@ public class App extends BasePage{
         findElement(By.id("menu_manageTools")).click();
         findElement(By.cssSelector(".ww_icon_AppGroupMessageBig")).click();
         return new BroadCastPage();
+    }
+
+    public MaterialLibraryPage toMaterilLibraryPage() {
+        findElement(By.id("menu_manageTools")).click();
+        findElement(By.cssSelector(".ww_icon_AppMaterialBig")).click();
+        return new MaterialLibraryPage();
     }
 }

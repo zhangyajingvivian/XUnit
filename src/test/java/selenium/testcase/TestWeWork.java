@@ -1,19 +1,8 @@
 package selenium.testcase;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import selenium.page.App;
-import selenium.page.ContactPage;
-
-import java.util.concurrent.TimeUnit;
-
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.runners.MethodSorters;
 
 /**
  * 描述:
@@ -21,42 +10,57 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author 张雅静
  * @create 2019-11-25 9:48 PM
  */
-public class TestWeWork {
-    public static App app;
-
-    @BeforeClass
-    public static void beforeAll() {
-        app = new App();
-        app.loginWithCookie();
-    }
+@FixMethodOrder(value = MethodSorters.NAME_ASCENDING)
+public class TestWeWork extends DefaultSuiteTest{
 
     @Test
-    public void add() throws InterruptedException {
+    public void test_01_add() throws InterruptedException {
         Thread.sleep(1000);
-        String phone = "17721174561";
+        String phone = "17721174563";
         app.toMemberAdd().add(phone, phone, phone);
     }
     @Test
-    public void delete() throws InterruptedException {
+    public void test_02_delete() throws InterruptedException {
         Thread.sleep(1000);
-        String phone = "17721174562";
-        app.toMemberAdd().add(phone, phone, phone).delete(phone);
+        String phone = "17721174563";
+        app.toMemberAdd().delete(phone);
     }
 
     @Test
-    public void deleteCurrentPage() throws InterruptedException {
+    public void test_03_deleteCurrentPage() throws InterruptedException {
         Thread.sleep(1000);
         app.toContact().deleteCurrentPage();
     }
 
     @Test
-    public void importFormFile() throws InterruptedException {
+    public void test_04_importFormFile() throws InterruptedException {
         Thread.sleep(1000);
         app.toContact().importFromFile("/Users/zhangyajing/Downloads/通讯录批量导入模板.xlsx");
     }
 
-    @AfterClass
-    public static void afterAll() throws InterruptedException {
-        app.quit();
+    @Test
+    public void test_05_addDepartment() throws InterruptedException {
+        String fatherDepartment = "腾讯公司";
+        String departmentName = "摄影部";
+        app.toContact().toEditDepartment(fatherDepartment)
+                .addDepartment(departmentName);
+    }
+
+    @Test
+    public void test_06_deleteDepartment() throws InterruptedException {
+        String fatherDepartment = "腾讯公司";
+        String departmentName = "摄影部";
+        app.toContact().toEditDepartment(fatherDepartment, departmentName)
+                .deleteDepartment(departmentName);
+    }
+
+    @Test
+    public void test_07_moveUpDepartment() throws InterruptedException {
+        app.toContact().toEditDepartment("财务部").moveUpDepartment();
+    }
+
+    @Test
+    public void test_08_moveDownDepartment() throws InterruptedException {
+        app.toContact().toEditDepartment("财务部").moveDownDepartment();
     }
 }

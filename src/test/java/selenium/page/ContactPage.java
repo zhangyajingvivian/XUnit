@@ -3,12 +3,16 @@ package selenium.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.DriverAction;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * 描述:
@@ -57,7 +61,38 @@ public class ContactPage extends BasePage{
         return this;
     }
 
-    public void list() {
+    public ContactPage toEditDepartment(String ... departmentNames) throws InterruptedException {
+        String id="";
+        for(String departmentName : departmentNames) {
+            WebElement department = findElement(By.linkText(departmentName));
+            id = findElement(By.linkText(departmentName)).getAttribute("id");
+            department.click();
+            department.click();
+        }
+        findElement(By.xpath("//a[@id='"+ id + "']/span")).click();
+        return this;
+    }
 
+    public ContactPage addDepartment(String departmentName) {
+        findElement(By.xpath("//ul[@class='vakata-context jstree-contextmenu jstree-default-contextmenu']/li[1]")).click();
+        findElement(By.name("name")).sendKeys(departmentName);
+        findElement(By.linkText("确定")).click();
+        return this;
+    }
+
+    public ContactPage deleteDepartment(String departmentName) {
+        findElement(By.xpath("//ul[@class='vakata-context jstree-contextmenu jstree-default-contextmenu']/li[7]")).click();
+        findElement(By.linkText("确定")).click();
+        return this;
+    }
+
+    public ContactPage moveUpDepartment() throws InterruptedException {
+        findElement(By.xpath("//ul[@class='vakata-context jstree-contextmenu jstree-default-contextmenu']/li[9]")).click();
+        return this;
+    }
+
+    public ContactPage moveDownDepartment() throws InterruptedException {
+        findElement(By.xpath("//ul[@class='vakata-context jstree-contextmenu jstree-default-contextmenu']/li[11]")).click();
+        return this;
     }
 }
