@@ -1,8 +1,8 @@
-package service.department.testcase;
+package service.user.testcase;
 
 import org.junit.Test;
 import service.department.api.Department;
-import service.department.api.User;
+import service.user.api.User;
 
 /**
  * 描述:

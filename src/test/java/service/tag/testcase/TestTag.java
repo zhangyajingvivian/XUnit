@@ -1,12 +1,11 @@
-package service.department.testcase;
+package service.tag.testcase;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
-import service.department.api.Tag;
-import service.department.api.User;
+import service.tag.api.Tag;
+import service.user.api.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;

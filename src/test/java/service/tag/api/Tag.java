@@ -1,4 +1,4 @@
-package service.department.api;
+package service.tag.api;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
