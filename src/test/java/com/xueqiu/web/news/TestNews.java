@@ -11,6 +11,6 @@ import org.junit.BeforeClass;
 public class TestNews extends News{
     @BeforeClass
     public void beforeNews() {
-        login();
+//        login();
     }
 }

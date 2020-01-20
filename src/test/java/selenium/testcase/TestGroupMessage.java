@@ -15,14 +15,7 @@ import static org.hamcrest.core.IsIterableContaining.hasItem;
  * @author 张雅静
  * @create 2019-11-27 9:32 PM
  */
-public class TestGroupMessage {
-    public static App app;
-
-    @BeforeClass
-    public static void beforeAll() {
-        app = new App();
-        app.loginWithCookie();
-    }
+public class TestGroupMessage extends DefaultSuiteTest{
 
     @Test
     public void send() {

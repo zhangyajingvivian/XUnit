@@ -2,10 +2,17 @@ package selenium.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
+import java.time.Duration;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * 描述:
@@ -27,7 +34,7 @@ public class App extends BasePage{
         driver.manage().window().maximize();
         findElement(By.linkText("企业登录")).click();
 
-        driver.manage().addCookie(new Cookie("wwrtx.sid", "BrrtaUJaOA-VbycDsOu1bWMXIsmyL4gNufiLzlpRxABjb29g_EYcf5moCXDmv7Zz"));
+        driver.manage().addCookie(new Cookie("wwrtx.sid", "BrrtaUJaOA-VbycDsOu1bQEq1KikOZqTs_xL0NbflLNXK_53VK267VE_0vq8UeGB"));
         driver.navigate().refresh();
         return this;
     }
