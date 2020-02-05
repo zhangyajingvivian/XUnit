@@ -1,0 +1,40 @@
+{
+  "errcode": 0,
+  "errmsg": "ok",
+  "userid": "{{userid}}",
+  "name": "{{name}}",
+  "department": [
+    7
+  ],
+  "position": "",
+  "mobile": "{{mobile}}",
+  "gender": "2",
+  "email": "{{email}}",
+  "avatar": "http://wx.qlogo.cn/mmhead/uvlUibAGFKHwyXtydBASp7MeNcCDrbxaSUFrSVRddibG0/0",
+  "status": 1,
+  "isleader": 0,
+  "extattr": {
+    "attrs": [
+
+    ]
+  },
+  "telephone": "",
+  "enable": 1,
+  "hide_mobile": 0,
+  "order": [
+    0
+  ],
+  "external_profile": {
+    "external_attr": [
+
+    ],
+    "external_corp_name": ""
+  },
+  "qr_code": "https://open.work.weixin.qq.com/wwopen/userQRCode?vcode=vcf999efd1670414e7",
+  "alias": "葳蕤",
+  "is_leader_in_dept": [
+    0
+  ],
+  "address": "上海市徐汇区宜州路188号",
+  "thumb_avatar": "http://wx.qlogo.cn/mmhead/uvlUibAGFKHwyXtydBASp7MeNcCDrbxaSUFrSVRddibG0/132"
+}

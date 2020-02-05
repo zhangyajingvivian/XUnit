@@ -6,6 +6,7 @@ import service.tag.api.Tag;
 import service.user.api.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
@@ -50,7 +51,7 @@ public class TestTag {
     @Test
     public void get() {
         String userId = "dalian";
-        user.create(userId);
+        user.create(userId, new HashMap<>());
         tag.addtagusers(tag.tagId, new String[]{userId}, new int[]{});
 
         tag.get(tag.tagId).then().body("errmsg", equalTo("ok")).body("userlist.userid", hasItem(userId));
