@@ -36,9 +36,9 @@ public class MaterialLibraryPage extends BasePage{
         findElement(By.cssSelector(".msg_mpNewsEditor_frameBody")).sendKeys(body);
         driver.switchTo().parentFrame();
 
-        ((JavascriptExecutor)(driver)).executeScript("window.scroll(0, 800)");
+        ((JavascriptExecutor)(driver)).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//a[@class='js_showAppSelect']")));
         findElement(By.cssSelector(".msg_infoItem_coverPlaceHolder")).click();
-        findElements(By.cssSelector(".js_file")).get(0).sendKeys("/Users/zhangyajing/Desktop/pic/1.jpg");
+        findElements(By.xpath("//input[@class='ww_fileInput js_file']"), 0).get(0).sendKeys("/Users/zhangyajing/Desktop/pic/1.png");
         findElement(By.linkText("确定")).click();
         Thread.sleep(1000);
         findElement(By.linkText("完成")).click();

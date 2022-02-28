@@ -3,6 +3,7 @@ package selenium.testcase;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import selenium.page.ContactPage;
 
 /**
  * 描述:
@@ -16,13 +17,13 @@ public class TestWeWork extends DefaultSuiteTest{
     @Test
     public void test_01_add() throws InterruptedException {
         Thread.sleep(1000);
-        String phone = "17721174563";
-        app.toMemberAdd().add(phone, phone, phone);
+        String phone = "17721174566";
+        app.toContact().toEditDepartment("研发部").toMemberAdd().add(phone, phone, phone);
     }
     @Test
     public void test_02_delete() throws InterruptedException {
         Thread.sleep(1000);
-        String phone = "17721174563";
+        String phone = "17721174564";
         app.toMemberAdd().delete(phone);
     }
 
@@ -40,8 +41,8 @@ public class TestWeWork extends DefaultSuiteTest{
 
     @Test
     public void test_05_addDepartment() throws InterruptedException {
-        String fatherDepartment = "腾讯公司";
-        String departmentName = "摄影部";
+        String fatherDepartment = "研发部";
+        String departmentName = "测试部";
         app.toContact().toEditDepartment(fatherDepartment)
                 .addDepartment(departmentName);
     }

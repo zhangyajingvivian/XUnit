@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.sql.DriverAction;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +27,7 @@ public class ContactPage extends BasePage{
     public ContactPage add(String username, String id, String phone) {
         findElement(By.name("username")).sendKeys(username);
         findElement(By.name("acctid")).sendKeys(id);
+        findElement(By.name("biz_mail")).sendKeys(new Date().getTime()+"");
         findElement(By.name("mobile")).sendKeys(phone);
         findElement(By.linkText("保存")).click();
         return this;
@@ -94,5 +97,11 @@ public class ContactPage extends BasePage{
     public ContactPage moveDownDepartment() throws InterruptedException {
         findElement(By.xpath("//ul[@class='vakata-context jstree-contextmenu jstree-default-contextmenu']/li[11]")).click();
         return this;
+    }
+
+    public ContactPage toMemberAdd() {
+        waitClickable(By.linkText("添加成员"), 10);
+        findElement(By.linkText("添加成员")).click();
+        return new ContactPage();
     }
 }

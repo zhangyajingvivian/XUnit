@@ -1,16 +1,18 @@
 package com.xueqiu.web;
 
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import junit.framework.TestCase;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import org.openqa.selenium.interactions.internal.TouchAction;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -25,33 +27,43 @@ public class Xueqiu {
     @Before
     public void setUp() throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("appium:udid", "f2469ce1");
         desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "HUAWEI");
-        desiredCapabilities.setCapability("udid", "GBG5T19829001996");
-        desiredCapabilities.setCapability("newCommandTimeout", 1800);
-        desiredCapabilities.setCapability("appPackage", "com.xueqiu.android");
-        desiredCapabilities.setCapability("appActivity", ".view.WelcomeActivityAlias");
-        desiredCapabilities.setCapability("automationName", "uiautomator2");
-        desiredCapabilities.setCapability("noReset", "true");
-        desiredCapabilities.setCapability("unicodeKeyboard", true);
-        desiredCapabilities.setCapability("resetKeyboard", true);
+        desiredCapabilities.setCapability("appium:adbPort", 5037);
+        desiredCapabilities.setCapability("appium:appPackage", "com.yit.art");
+        desiredCapabilities.setCapability("appium:appActivity", "com.yitlib.module.shell.welcome.WelcomeActivity");//
+        desiredCapabilities.setCapability("appium:skipDeviceInitialization", true);
+        desiredCapabilities.setCapability("appium:skipServerInstallation", true);
+        desiredCapabilities.setCapability("appium:automationName", "uiautomator2");
+        desiredCapabilities.setCapability("appium:noReset", true);
+        desiredCapabilities.setCapability("appium:ensureWebviewsHavePages", true);
+        desiredCapabilities.setCapability("appium:nativeWebScreenshot", true);
+        desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
+        desiredCapabilities.setCapability("appium:connectHardwareKeyboard", true);
 
         URL remoteUrl = new URL("http://localhost:4723/wd/hub");
 
         driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @Test
     public void sampleTest() throws InterruptedException {
         Thread.sleep(5000);
-        MobileElement el1 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.HorizontalScrollView/android.widget.FrameLayout/android.widget.LinearLayout[2]/android.widget.FrameLayout[3]/android.widget.LinearLayout/android.widget.FrameLayout[1]/android.widget.TextView");
-        el1.click();
-        MobileElement el2 = (MobileElement) driver.findElementById("com.xueqiu.android:id/scroll_view");
-        el2.click();
+        new TouchAction(driver).press(PointOption.point(505, 1740)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))).moveTo(PointOption.point(539, 399)).release().perform();
+        driver.getSupportedPerformanceDataTypes().stream().forEach(p -> {
+            System.out.println(p);
+            //System.out.println(driver.getPerformanceData("com.yit.art", p, 5));
+        });
+
+        System.out.println(driver.getPerformanceData("com.yit.art", "cpuinfo", 5));
+        System.out.println(driver.getPerformanceData("com.yit.art", "memoryinfo", 5));
+        System.out.println(driver.getPerformanceData("com.yit.art", "batteryinfo", 5));
+        System.out.println(driver.getPerformanceData("com.yit.art", "networkinfo", 5));
     }
 
     @After
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 }

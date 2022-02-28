@@ -30,7 +30,7 @@ public class BroadCastPage extends BasePage{
         findElement(By.cssSelector(".msg_noticeEditor_frameBody")).sendKeys(body);
         driver.switchTo().parentFrame();
 
-        ((JavascriptExecutor)(driver)).executeScript("window.scroll(0, 800)");
+        ((JavascriptExecutor)(driver)).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.cssSelector(".msg_edit_infoItem_textWord")));
 
         findElement(By.cssSelector(".msg_edit_infoItem_textWord")).click();
         findElement(By.cssSelector(".qui_textarea"), 0).sendKeys(summary);
