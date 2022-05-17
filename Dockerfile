@@ -1,5 +1,4 @@
 #编写dockerfile 文件，在创建镜像时去下载vim和net-tools
-[root@localhost dockerfile]# cat mydockerfile 
 FROM centos
 
 ENV MYPATH /usr/local
